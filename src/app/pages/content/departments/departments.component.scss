@@ -1,0 +1,109 @@
+.grid-container {
+  margin: 20px;
+}
+:host ::ng-deep .dx-field-label {
+  width: 25% !important;
+}
+:host
+  ::ng-deep
+  .dx-field-value:not(.dx-switch):not(.dx-checkbox):not(.dx-button),
+.dx-field-value-static {
+  width: 60% !important;
+}
+:host ::ng-deep .dx-field-value2 {
+  width: 10% !important;
+}
+:host ::ng-deep .dx-field-value,
+.dx-field-value-static {
+  float: left;
+}
+
+:host ::ng-deep .dx-texteditor.dx-editor-outlined {
+  margin: 4px !important;
+}
+
+:host ::ng-deep .dx-texteditor-input {
+  border-radius: 0 !important;
+}
+
+:host ::ng-deep .dx-checkbox.dx-state-readonly .dx-checkbox-icon {
+  background-color: #7d7d7d !important;
+}
+
+:host
+  ::ng-deep
+  .dx-datagrid-content
+  .dx-datagrid-table
+  .dx-row
+  .dx-editor-cell
+  .dx-dropdowneditor {
+  padding-left: 0px !important;
+}
+
+::ng-deep .dx-toolbar-label > div {
+  overflow: hidden;
+  text-overflow: unset !important;
+  white-space: nowrap;
+  margin: 0 -5px;
+  padding: 0 0px;
+}
+
+:host ::ng-deep .dx-field-label {
+  color: #2a3869;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+::ng-deep .dx-popup-bottom .dx-button {
+  background-color: #2a3869 !important;
+  color: #fff !important;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 2px !important;
+  border: none !important;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12) !important;
+}
+
+::ng-deep .dx-popup-bottom .dx-button:hover {
+  background: #f3cb30 !important;
+  color: #fff !important;
+}
+
+::ng-deep .dx-popup-bottom.dx-toolbar .dx-toolbar-item {
+  padding: 0 20px 0 0;
+}
+
+::ng-deep .dx-popup-title {
+  border-bottom: 2px solid #2a3869 !important;
+  color: #2a3869 !important;
+  font-weight: 500 !important;
+}
+
+::ng-deep .dx-overlay-shader {
+  background-color: rgba(0, 0, 0, 0.288) !important;
+}
+
+::ng-deep .dx-popup-wrapper > .dx-overlay-content {
+  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, 0.2),
+    0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12);
+  border-radius: 2px;
+}
+
+::ng-deep .dx-button .dx-button-content {
+  padding: 8px !important;
+}
+
+@media (max-width: 360) {
+  ::ng-deep .dx-datebox {
+    max-width: 94%;
+  }
+}
+:host ::ng-deep .dx-datagrid .dx-row > td {
+  padding: 3px !important;
+}
+
+:host ::ng-deep .dx-texteditor-input {
+  border-radius: 0 !important;
+}

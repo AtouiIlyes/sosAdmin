@@ -1,0 +1,63 @@
+<div class="grid-container">
+  <mat-card>
+    <mat-card-content>
+      <dx-data-grid
+        id="gridContainer"
+        [dataSource]="users"
+        keyExpr="id"
+        [showBorders]="true"
+        [hoverStateEnabled]="true"
+      >
+        <dxo-selection mode="single"></dxo-selection>
+        <dxo-paging [pageSize]="10"></dxo-paging>
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-search-panel
+          [visible]="true"
+          [width]="240"
+          placeholder="Recherche..."
+        ></dxo-search-panel>
+        <dxo-editing
+          mode="popup"
+          [allowUpdating]="false"
+          [allowAdding]="false"
+          [allowDeleting]="false"
+          [useIcons]="true"
+        >
+          <dxo-popup
+            title="Edition Moyen d'urgence"
+            [showTitle]="true"
+            [width]="700"
+            [height]="450"
+            [dragEnabled]="true"
+            [position]="{ my: 'center', at: 'center', of: 'window' }"
+            [showCloseButton]="false"
+            [closeOnOutsideClick]="true"
+          >
+          </dxo-popup>
+        </dxo-editing>
+        <dxi-column dataField="firstName" caption="Nom"> </dxi-column>
+        <dxi-column dataField="lastName" caption="Prénom"> </dxi-column>
+        <dxi-column dataField="id" caption="Identifiant"> </dxi-column>
+        <dxi-column
+        dataField=""
+        caption=" Fiche Santé"
+        cellTemplate="cellTemplateButton"
+        [visible]="true"
+        [formItem]="{ visible: false }"
+      ></dxi-column>
+      <div
+          *dxTemplate="let button of 'cellTemplateButton'"
+          class="cell-button"
+        >
+          <a
+            style="cursor: pointer"
+            (click)="onCellButtonClick( button.data.id)"
+            ><img
+              src="./assets/img/icon/settings.svg"
+              class="icon-gateway-table"
+          /></a>
+        </div>
+      </dx-data-grid>
+    </mat-card-content>
+  </mat-card>
+</div>

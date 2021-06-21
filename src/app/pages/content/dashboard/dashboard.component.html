@@ -1,0 +1,107 @@
+<div class="tableau-board">
+  <div class="row">
+    <div class="col-lg-9 pl-0 pr-0 bg-blanc">
+      <div class="bg-blanc block-board">
+        <h1>Tableau de bord</h1>
+        <div class="row credit animate0">
+          <div class="col-lg-9 padding-5">
+            <h4>
+              Crédit <span class="ml-2">10</span>
+            </h4>
+            <p>Le crédit rajouté et consommé s’entend HT </p>
+            <div class="compte">
+              <button class="btn-primary" [routerLink]="['/dashboard/credit']">
+                Créditer mon compte
+              </button>
+            </div>
+          </div>
+          <div class="col-lg-3 bg-gris d-flex align-items-center">
+            <div class="">
+              <div class="paypal-img11">
+                <img src="../../../assets/img/img-credit.png" alt="" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mes-article">
+          <h1>Mes Articles</h1>
+          <div class="row">
+            <div class="col">
+              <div
+                class="bg-article"
+                [routerLink]="['/dashboard/mes-briefs/0']"
+              >
+                <div class="">
+                  <h3>Textes restants à traiter</h3>
+                  <p class="p-bleu mb-0">10</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div
+                class="bg-article"
+                [routerLink]="['/dashboard/mes-briefs/1']"
+              >
+                <div class="">
+                  <h3>Dont textes en rédaction</h3>
+                  <p class="p-gris mb-0">50</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div
+                class="bg-article"
+                [routerLink]="['/dashboard/mes-briefs/2']"
+              >
+                <div class="">
+                  <h3>Dont textes en correction</h3>
+                  <p class="p-rouge mb-0">100</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div
+                class="bg-article"
+                [routerLink]="['/dashboard/mes-briefs/3']"
+              >
+                <div class="">
+                  <h3>À vous de valider</h3>
+                  <p class="p-blue mb-0">10</p>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div
+                class="bg-article"
+                [routerLink]="['/dashboard/mes-briefs/4']"
+              >
+                <div class="">
+                  <h3>Textes déjà publiés</h3>
+                  <p class="p-vert mb-0">20</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mes-commande">
+          <div class="row align-items-center">
+            <div class="col-lg-6 col-7">
+              <h1>Mes commandes</h1>
+            </div>
+            <div class="col-lg-6 col-5 text-right">
+              <a [routerLink]="['/dashboard/mes-commandes']"
+                >Voir plus
+                <img src="../../../assets/img/arrow-right.svg" alt=""
+              /></a>
+            </div>
+          </div>
+          <div class="table-commande">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3">
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+:host
+  ::ng-deep
+  dx-data-grid#gridContainerGateway
+  > div.dx-datagrid
+  > div.dx-datagrid-rowsview
+  > div.dx-datagrid-content
+  > table.dx-datagrid-table
+  > tbody
+  > tr.dx-edit-row
+  > td
+  > div.cell-button {
+  padding-left: 7px;
+}
+
+.icon-gateway-table {
+  width: 18px;
+  height: 18px;
+  background-position: 0px 0px;
+  background-size: 18px 18px;
+  padding: 0px;
+  font-size: 18px;
+  text-align: center;
+  line-height: 18px;
+  margin: 0 5px;
+}
