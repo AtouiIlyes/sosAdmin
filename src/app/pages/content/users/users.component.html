@@ -39,19 +39,17 @@
         <dxi-column dataField="lastName" caption="Prénom"> </dxi-column>
         <dxi-column dataField="id" caption="Identifiant"> </dxi-column>
         <dxi-column
-        dataField=""
-        caption=" Fiche Santé"
-        cellTemplate="cellTemplateButton"
-        [visible]="true"
-        [formItem]="{ visible: false }"
-      ></dxi-column>
-      <div
+          dataField=""
+          caption=" Fiche Santé"
+          cellTemplate="cellTemplateButton"
+          [visible]="true"
+          [formItem]="{ visible: false }"
+        ></dxi-column>
+        <div
           *dxTemplate="let button of 'cellTemplateButton'"
           class="cell-button"
         >
-          <a
-            style="cursor: pointer"
-            (click)="onCellButtonClick( button.data.id)"
+          <a style="cursor: pointer" (click)="onCellButtonClick(button.data.id)"
             ><img
               src="./assets/img/icon/settings.svg"
               class="icon-gateway-table"

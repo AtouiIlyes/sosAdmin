@@ -1,0 +1,146 @@
+.grid-container {
+  padding: 20px;
+}
+:host
+  ::ng-deep
+  dx-data-grid#gridContainerGateway
+  > div.dx-datagrid
+  > div.dx-datagrid-rowsview
+  > div.dx-datagrid-content
+  > table.dx-datagrid-table
+  > tbody
+  > tr.dx-edit-row
+  > td
+  > div.cell-button {
+  padding-left: 7px;
+}
+
+.icon-gateway-table {
+  width: 18px;
+  height: 18px;
+  background-position: 0px 0px;
+  background-size: 18px 18px;
+  padding: 0px;
+  font-size: 18px;
+  text-align: center;
+  line-height: 18px;
+  margin: 0 5px;
+}
+:host
+  ::ng-deep
+  dx-data-grid#gridContainerGateway
+  > div.dx-datagrid
+  > div.dx-datagrid-rowsview
+  tr
+  *,
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/*, :host ::ng-deep .dx-icon-edit, :host ::ng-deep .dx-link-delete*/
+:host ::ng-deep dx-data-grid#gridContainerGateway tr {
+  border-bottom: 1px solid #fff;
+}
+
+.icon-gateway-table {
+  width: 18px;
+  height: 18px;
+  background-position: 0px 0px;
+  background-size: 18px 18px;
+  padding: 0px;
+  font-size: 18px;
+  text-align: center;
+  line-height: 18px;
+  margin: 0 5px;
+}
+
+:host
+  ::ng-deep
+  dx-data-grid#gridContainerGateway
+  > div.dx-datagrid
+  > div.dx-datagrid-rowsview
+  > div.dx-datagrid-content
+  > table.dx-datagrid-table
+  > tbody
+  > tr.dx-edit-row
+  > td
+  > div.cell-button {
+  padding-left: 7px;
+}
+
+:host
+  ::ng-deep
+  dx-data-grid#gridContainerGateway
+  > div.dx-datagrid
+  > div.dx-datagrid-rowsview
+  > div.dx-datagrid-content
+  > table.dx-datagrid-table
+  > tbody
+  > tr.dx-edit-row
+  > td
+  > div
+  > div
+  > div
+  > input {
+  background: #c61313a3;
+}
+
+:host
+  ::ng-deep
+  dx-data-grid#gridContainerGateway
+  > div.dx-datagrid
+  > div.dx-datagrid-rowsview
+  > div.dx-datagrid-content
+  > table.dx-datagrid-table
+  > tbody
+  > tr.dx-row-inserted
+  > td
+  > div
+  > div
+  > div
+  > input {
+  background: #0a9d0ca3;
+}
+
+:host
+  ::ng-deep
+  dx-data-grid#gridContainerGateway
+  > div.dx-datagrid
+  > div.dx-datagrid-rowsview
+  > div.dx-datagrid-content
+  > table.dx-datagrid-table
+  > tbody
+  > tr.dx-master-detail-row
+  > td {
+  background-color: #848484;
+}
+
+.legend {
+  margin: 5px;
+  display: -webkit-box;
+  width: 100%;
+}
+
+.legend-span {
+  display: block;
+  float: left;
+  height: 16px;
+  width: 30px;
+  margin-right: 5px;
+  margin-left: 0;
+}
+
+.legend-labels-code {
+  color: black;
+  width: 170px;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+:host ::ng-deep .dx-datagrid-content .dx-datagrid-table .dx-row > td,
+.dx-datagrid-content .dx-datagrid-table .dx-row > tr > td {
+  color: white;
+}

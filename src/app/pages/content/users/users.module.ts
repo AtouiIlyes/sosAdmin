@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users.component';
-import { DxDataGridModule } from 'devextreme-angular';
+import { DxButtonModule, DxDataGridModule } from 'devextreme-angular';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 
@@ -15,6 +15,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     DxDataGridModule,
     MatCardModule,
     MatDialogModule,
+    DxButtonModule,
     UsersRoutingModule
   ]
 })

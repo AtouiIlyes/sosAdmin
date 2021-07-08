@@ -1,24 +1,12 @@
 export const NAV_ROUTE: Array<any> = [
-  {
-    id: 2,
-    idModule: 0,
-    readWrite: 0,
-    routeDescription: 'Dashboard',
-    routeLink: '/dashboard',
-    routeModule: [1],
-    routeTitle: 'Dashboard',
-    routeIcon: 'dashboard',
-    divider: '0',
-    hidden: false,
-    submenu: [],
-  },
+
 
   {
     id: 3,
     idModule: 0,
     readWrite: 0,
     routeDescription: 'Demandes d\'urgence',
-    routeLink: '/users',
+    routeLink: '/help_request',
     routeModule: [1],
     routeTitle: 'Demandes d\'urgence',
     routeIcon: 'help',

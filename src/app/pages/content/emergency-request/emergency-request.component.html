@@ -1,0 +1,75 @@
+<div class="grid-container">
+  <mat-card>
+    <mat-card-content>
+      <div class="legend">
+        <div style="width: 200px; display: flex">
+          <span class="legend-span" style="background: #337ab7"></span>
+          <div class="legend-labels-code">Police</div>
+        </div>
+        <div style="width: 200px; display: flex">
+          <span class="legend-span" style="background: #ff4081"></span>
+          <div class="legend-labels-code">Ambulence</div>
+        </div>
+        <div style="width: 200px; display: flex">
+          <span class="legend-span" style="background: #ff1111"></span>
+          <div class="legend-labels-code">Tous moyens d'urgence</div>
+        </div>
+        <div style="width: 200px; display: flex">
+          <span class="legend-span" style="background: #777777"></span>
+          <div class="legend-labels-code">Pompier</div>
+        </div>
+        <div style="width: 200px; display: flex">
+          <span class="legend-span" style="background: #4cae4c"></span>
+          <div class="legend-labels-code">SAMU</div>
+        </div>
+      </div>
+      <dx-data-grid
+        id="gridContainer"
+        [dataSource]="helpRequest"
+        keyExpr="id"
+        [showBorders]="true"
+        [hoverStateEnabled]="true"
+        (onRowPrepared)="getBackgroundColor($event)"
+      >
+        <dxo-selection mode="single"></dxo-selection>
+        <dxo-paging [pageSize]="10"></dxo-paging>
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-search-panel
+          [visible]="true"
+          [width]="240"
+          placeholder="Recherche..."
+        ></dxo-search-panel>
+
+        <dxi-column dataField="id" caption="ID Urgence"> </dxi-column>
+        <dxi-column dataField="type" caption="Type"> </dxi-column>
+        <dxi-column dataField="date" caption="Date"> </dxi-column>
+        <dxi-column
+          dataField=""
+          caption="Utilisateur"
+          cellTemplate="user"
+          [visible]="true"
+          [formItem]="{ visible: false }"
+        ></dxi-column>
+        <dxi-column
+          dataField=""
+          caption="Position sur Map"
+          cellTemplate="map"
+          [visible]="true"
+          [formItem]="{ visible: false }"
+        ></dxi-column>
+        <div *dxTemplate="let button of 'user'" class="cell-button">
+          <a style="cursor: pointer" (click)="showUserInfo(button.data.id)"
+            ><img
+              src="./assets/img/icon/settings.svg"
+              class="icon-gateway-table"
+          /></a>
+        </div>
+        <div *dxTemplate="let button of 'map'" class="cell-button">
+          <a style="cursor: pointer" (click)="showMap(button.data.id)">
+            <mat-icon class="bg-icon-menu">pin_drop</mat-icon>
+          </a>
+        </div>
+      </dx-data-grid>
+    </mat-card-content>
+  </mat-card>
+</div>

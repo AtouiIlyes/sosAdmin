@@ -111,13 +111,13 @@ body {
   caret-color: #2a3869;
 }
 .bg-login {
-  background-image: url("/assets/icon/background/bg-login.jpg");
+  background-image: url("/assets/img/background/bg-geo.jpg");
   background-repeat: no-repeat, repeat;
   background-size: cover;
   min-height: 100vh;
 }
 
 .position-logo {
-  width: 315px;
-  padding: 2% 5% 0 0;
+  width: 150px;
+  padding: 2% 2% 0 0;
 }

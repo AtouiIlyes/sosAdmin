@@ -6,10 +6,6 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import Swal from "sweetalert2";
 
 export class Zone {
-  id: string;
-  nom: string;
-  geometry: string;
-  pined: number;
 }
 let zonesWithFrigos: Zone[];
 let zones: Zone[];
@@ -84,34 +80,6 @@ export class ZoneService {
       });
   }
 
-  addZone(data: Zone) {
-    let body = new URLSearchParams();
-    let options = {
-      headers: new HttpHeaders().set(
-        "Content-Type",
-        "application/x-www-form-urlencoded;charset=UTF-8"
-      ),
-    };
-    const dataBody =
-      '{"type":2,"values":[["' +
-      data.nom +
-      '",[],0,0,' +
-      (data.pined === undefined ? 0 : data.pined) +
-      "," +
-      "]]}";
-    body.set("data", dataBody);
-    this.http
-      .post("api/infra/zone", body.toString(), options)
-      .subscribe((res: any) => {
-        if (res.rep !== undefined) {
-          Swal.fire("", "problème", "error");
-        } else {
-          Swal.fire("", "Zone ajouté", "success");
-          zones = JSON.parse(JSON.stringify(res));
-          this.eventChangeZone();
-        }
-      });
-  }
 
   updateZone(data: any, id: string) {
     let body = new URLSearchParams();
@@ -167,7 +135,7 @@ export class ZoneService {
       });
   }
 
-  updateGeometry(geometry: any, lat, lng, id: string) {
+  updateGeometry(geometry: any, lat:any, lng:any, id: string) {
     let body = new URLSearchParams();
     let options = {
       headers: new HttpHeaders().set(
@@ -246,7 +214,7 @@ export class ZoneService {
     }
     if (this.checkFilterValue(idZone)) {
       if (idZone.length > 0) {
-        zonesFilterd = zonesFilterd.filter((z) =>
+        zonesFilterd = zonesFilterd.filter((z:any) =>
           idZone.includes(Number(z.id))
         );
       }
@@ -254,7 +222,7 @@ export class ZoneService {
     if (this.checkFilterValue(nomFrigo)) {
       let filteredZoneByFrigoName = [];
       for (let zone of JSON.parse(JSON.stringify(zonesFilterd))) {
-        zone.frigos = zone.frigos.filter((frigo) =>
+        zone.frigos = zone.frigos.filter((frigo:any) =>
           frigo.nom.toLowerCase().includes(nomFrigo)
         );
         if (zone.frigos.length > 0) {
@@ -268,7 +236,7 @@ export class ZoneService {
       if (typeFrigo.length > 0) {
         let filteredZoneByFrigoType = [];
         for (let zone of JSON.parse(JSON.stringify(zonesFilterd))) {
-          zone.frigos = zone.frigos.filter((frigo) =>
+          zone.frigos = zone.frigos.filter((frigo:any) =>
             typeFrigo.includes(Number(frigo.id_type))
           );
           if (zone.frigos.length > 0) {
@@ -283,7 +251,7 @@ export class ZoneService {
       if (categoryFrigo.length > 0) {
         let filteredZoneByFrigoCategory = [];
         for (let zone of JSON.parse(JSON.stringify(zonesFilterd))) {
-          zone.frigos = zone.frigos.filter((frigo) =>
+          zone.frigos = zone.frigos.filter((frigo:any) =>
             categoryFrigo.includes(Number(frigo.id_category))
           );
           if (zone.frigos.length > 0) {
@@ -297,7 +265,7 @@ export class ZoneService {
     if (this.checkFilterValue(client)) {
       let filteredZoneByFrigoClient = [];
       for (let zone of JSON.parse(JSON.stringify(zonesFilterd))) {
-        zone.frigos = zone.frigos.filter((frigo) =>
+        zone.frigos = zone.frigos.filter((frigo:any) =>
           frigo.client.toLowerCase().includes(client)
         );
         if (zone.frigos.length > 0) {
@@ -309,7 +277,7 @@ export class ZoneService {
     return zonesFilterd;
   }
 
-  checkFilterValue(value) {
+  checkFilterValue(value:any) {
     if (value !== undefined && value !== null && value !== "") {
       return true;
     }

@@ -1,11 +1,11 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
-import { MainContainerComponent } from "./main-container.component";
+import { MainContainerComponent } from './main-container.component';
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: MainContainerComponent,
     children: [
       // {
@@ -14,25 +14,40 @@ const routes: Routes = [
       //     import("../frigo/frigo.module").then((m) => m.FrigoModule),
       // },
       {
-        path: "dashboard",
+        path: 'dashboard',
         loadChildren: () =>
-          import("../dashboard/dashboard.module").then(
+          import('../dashboard/dashboard.module').then(
             (m) => m.DashboardModule
           ),
       },
       {
-        path: "departments",
+        path: 'departments',
         loadChildren: () =>
-          import("../departments/departments.module").then(
+          import('../departments/departments.module').then(
             (m) => m.DepartmentsModule
           ),
       },
       {
-        path: "users",
+        path: 'users',
         loadChildren: () =>
-          import("../users/users.module").then(
-            (m) => m.UsersModule
+          import('../users/users.module').then((m) => m.UsersModule),
+      },
+      {
+        path: 'help_request',
+        loadChildren: () =>
+          import('../emergency-request/emergency-request.module').then(
+            (m) => m.EmergencyRequestModule
           ),
+      },
+      {
+        path: 'map',
+        loadChildren: () =>
+          import('../map/map.module').then((m) => m.MapModule),
+      },
+      {
+        path: "health-card",
+        loadChildren: () =>
+          import("../health-card/health-card.module").then((m) => m.HealthCardModule),
       },
       // {
       //   path: "report",

@@ -1,5 +1,4 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-health-card',
@@ -8,24 +7,21 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class HealthCardComponent implements OnInit {
   user: any = {
-    id: 1,
-    firstName: 'John',
-    lastName: 'Heart',
-    birthDate: new Date(1964, 2, 16),
-    address: '351 S Hill St.',
-    city: 'Los Angeles',
-    state: 'CA',
-    zipcode: '90013',
-    phone: '+1(213) 555-9392',
-    email: 'jheart@dx-email.com',
-    skype: 'jheart_DX_skype',
+    id: 1594160,
+    firstName: 'Hadj Abid',
+    lastName: 'Oumaima',
+    birthDate: new Date(1999, 5, 23),
+    address: 'tt sue',
+    city: 'El Jem',
+    state: 'Tunisie',
+    zipcode: '5160',
+    phone: '+(216) 22457123',
+    email: 'oumaima@email.com',
+    skype: 'oumaima_skype',
   };
   items = ['oui', 'non'];
   bloodType = ['A+', 'B+', 'AB+', 'O+', 'A-', 'B-', 'AB-', 'O-'];
-  constructor(
-    public dialogRef: MatDialogRef<HealthCardComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {}
 }

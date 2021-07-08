@@ -24,8 +24,10 @@ const routes: Routes = [
         (m) => m.DashboardModule
       ),
   },
+  { path: 'health-card', loadChildren: () => import('./pages/content/health-card/health-card.module').then(m => m.HealthCardModule) },
   { path: 'departments', loadChildren: () => import('./pages/content/departments/departments.module').then(m => m.DepartmentsModule) },
   { path: 'users', loadChildren: () => import('./pages/content/users/users.module').then(m => m.UsersModule) },
+  { path: 'emergency-request', loadChildren: () => import('./pages/content/emergency-request/emergency-request.module').then(m => m.EmergencyRequestModule) },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
