@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { UrgenceService } from 'src/app/services/data/urgence.service';
 import { HealthCardComponent } from '../health-card/health-card.component';
 import { MapComponent } from '../map/map.component';
 
@@ -9,34 +10,40 @@ import { MapComponent } from '../map/map.component';
   styleUrls: ['./emergency-request.component.scss'],
 })
 export class EmergencyRequestComponent implements OnInit {
-  helpRequest = [
-    {
-      id: 1,
-      user: { id: 1264302, firstName: 'Hadj Abid', lastName: 'Oumaima' },
-      lat: 35.508754,
-      lon: 11.048408,
-      type: 'police',
-      date: '2021-06-27 16:30:03',
-    },
-  ];
-  constructor(public dialog: MatDialog) {}
+  helpRequest = [];
+  constructor(public dialog: MatDialog, private urgence: UrgenceService) {
+    this.urgence.observableUrgence.subscribe((items:any) => {
+      if (items != undefined) {
+        this.helpRequest = items;
+      }
+    });
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.urgence.getUrgences();
+  }
 
-  showUserInfo(id: any) {
+  showUserInfo(data: any) {
     const dialogRef = this.dialog.open(HealthCardComponent, {
       width: window.innerWidth < 720 ? '100%' : window.innerWidth / 1.5 + 'px',
-      height: window.innerWidth < 720 ? '100%' : 'auto',
+      height: window.innerWidth < 720 ? '70%' : '70%',
+      data: data,
       maxWidth: 'none',
     });
   }
 
-  showMap(id: any) {
+  showMap(data: any) {
     const dialogRef = this.dialog.open(MapComponent, {
       width: window.innerWidth < 720 ? '100%' : window.innerWidth / 1.5 + 'px',
       height: window.innerWidth < 720 ? '100%' : 'auto',
+      data: data,
       maxWidth: 'none',
     });
+  }
+
+  sendHelp(id:any){
+    this.urgence.sendHelp(id);
+
   }
 
   getBackgroundColor(event: any) {
@@ -48,14 +55,14 @@ export class EmergencyRequestComponent implements OnInit {
           event.rowElement.bgColor = '#ff4081';
         } else if (event.data.type.toUpperCase() === 'SAMU') {
           event.rowElement.bgColor = '#4cae4c';
-        } else if (event.data.type.toUpperCase() === 'POMPIER') {
+        } else if (event.data.type.toUpperCase() === 'FIRE_STATION') {
           event.rowElement.bgColor = '#777777';
         }
       } else {
         event.rowElement.bgColor = '#ff1111';
       }
     } else {
-      event.rowElement.bgColor = '#fff';
+      event.rowElement.bgColor = '#ff1111';
     }
   }
 }

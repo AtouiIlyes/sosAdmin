@@ -3,7 +3,7 @@
     <mat-tab label="Information personnelles">
       <mat-card>
         <div id="form-container">
-          <dx-form id="form" [formData]="user" [colCount]="2">
+          <dx-form id="form" [formData]="data" [colCount]="2">
             <dxi-item
               itemType="group"
               icon="card"
@@ -69,7 +69,7 @@
     <mat-tab label="Information sanitaires">
       <mat-card>
         <div id="form-container">
-          <dx-form id="form" [formData]="user" [colCount]="2">
+          <dx-form id="form" [formData]="data" [colCount]="2">
             <dxi-item itemType="group" caption="Allergie sévère">
               <dxi-item
                 dataField="Identifiant"

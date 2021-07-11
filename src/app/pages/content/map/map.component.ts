@@ -1,4 +1,4 @@
-import { AfterViewInit, OnDestroy } from '@angular/core';
+import { AfterViewInit, Inject, OnDestroy } from '@angular/core';
 import {
   Component,
   ComponentFactoryResolver,
@@ -15,6 +15,8 @@ import { UtilsService } from 'src/app/services/data/utils.service';
 import { loadMessages, locale } from 'devextreme/localization';
 import { fr } from 'src/app/services/data/fr';
 import { UrgenceDepartmentsService } from 'src/app/services/data/urgenceDepartments.service';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UrgenceService } from 'src/app/services/data/urgence.service';
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -23,23 +25,7 @@ import { UrgenceDepartmentsService } from 'src/app/services/data/urgenceDepartme
 export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   myMap: any;
   isLoading = true;
-  urgenceDepartments = [
-    {
-      id: 1,
-      lat: 36.809285,
-      lon: 9.956684,
-      name: 'centre de police',
-      type: 'police',
-    },
-    {
-      id: 2,
-      lat: 35.822267,
-
-      lon: 10.500871,
-      name: 'Caserne de pompiers',
-      type: 'fire_station',
-    },
-  ];
+  urgences = [];
   zones = [];
   departmentSubscription: Subscription = new Subscription();
   filteredZoneSubscription: Subscription = new Subscription();
@@ -72,6 +58,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private resolver: ComponentFactoryResolver,
     public urgenceDepartmentsService: UrgenceDepartmentsService,
+    private urgence: UrgenceService,
     private injector: Injector,
     public zoneService: ZoneService,
     public utilsService: UtilsService
@@ -81,85 +68,49 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
     this.layerGroups = [];
     this.activeLayerGroup = L.featureGroup([]);
     this.layerGroups.push(this.activeLayerGroup);
-    this.departmentSubscription =
-      this.urgenceDepartmentsService.observableUrgenceDepartments.subscribe(
-        (items: any) => {
-          if (items !== undefined) {
-            this.urgenceDepartments = items;
-            if (this.myMap !== undefined) {
-              this.layerGroups = [];
-              this.activeLayerGroup.clearLayers();
-              this.initMarkerCluster();
-              this.updateMapCluster(this.urgenceDepartments);
-              if (this.markersCluster !== undefined) {
-                const bounds = this.markersCluster.getBounds();
-                if (!this.utilsService.isEmptyObject(bounds)) {
-                  this.myMap.fitBounds(bounds);
-                }
+    this.departmentSubscription = this.urgence.observableUrgence.subscribe(
+      (items: any) => {
+        if (items !== undefined) {
+          this.urgences = items;
+          if (this.myMap !== undefined) {
+            this.layerGroups = [];
+            this.activeLayerGroup.clearLayers();
+            this.initMarkerCluster();
+            this.updateMapCluster(this.urgences);
+            if (this.markersCluster !== undefined) {
+              const bounds = this.markersCluster.getBounds();
+              if (!this.utilsService.isEmptyObject(bounds)) {
+                this.myMap.fitBounds(bounds);
               }
-              this.myMap.addLayer(this.markersCluster);
-              let that = this;
-              this.myMap.locate({
-                setView: true,
-                maxZoom: 16,
-                watch: true,
-                enableHighAccuracy: true,
-              });
-              this.myMap.on('locationfound', (e: any) => {
-                let radius = e.accuracy;
-                let latlng: any = this.randomizeLocation(
-                  e.latitude,
-                  e.longitude
-                );
-                L.marker(latlng, {
-                  icon: this.iconMe,
-                })
-                  .addTo(this.myMap)
-                  .bindPopup('Urgence est ici ')
-                  .openPopup();
-
-                L.circle(e.latlng, 10 / 2).addTo(this.myMap);
-              });
-              this.myMap.on('locationerror', (e: any) => {
-                alert(e.message);
-              });
-              this.isLoading = false;
             }
+            this.myMap.addLayer(this.markersCluster);
+            let that = this;
+            // this.myMap.locate({
+            //   setView: true,
+            //   maxZoom: 16,
+            //   watch: true,
+            //   enableHighAccuracy: true,
+            // });
+            // this.myMap.on('locationfound', (e: any) => {
+            //   let radius = e.accuracy;
+            //   let latlng: any = this.randomizeLocation(e.latitude, e.longitude);
+            //   L.marker(latlng, {
+            //     icon: this.iconMe,
+            //   })
+            //     .addTo(this.myMap)
+            //     .bindPopup('Urgence est ici ')
+            //     .openPopup();
+
+            //   L.circle(e.latlng, 10 / 2).addTo(this.myMap);
+            // });
+            this.myMap.on('locationerror', (e: any) => {
+              alert(e.message);
+            });
+            this.isLoading = false;
           }
         }
-      );
-
-    // this.filteredZoneSubscription = this.zoneService.observableFilteredZone.subscribe(
-    //   (items: any) => {
-    //     if (items !== undefined) {
-    //       if (this.myMap !== undefined) {
-    //         this.layerGroups = [];
-    //         this.activeLayerGroup.clearLayers();
-    //         if (this.markersCluster !== undefined) {
-    //           this.myMap.removeLayer(this.markersCluster);
-    //           this.initMarkerCluster();
-    //         }
-    //         for (let item of items) {
-    //           this.updateMapCluster(item.frigos);
-    //           let geoJsonData = JSON.parse(item.geometry);
-    //           if (geoJsonData.length !== 0) {
-    //             if (!this.utilsService.isEmptyObject(geoJsonData)) {
-    //               this.fromGeoJson(item, geoJsonData);
-    //             }
-    //           }
-    //         }
-    //         this.layerGroups.push(this.activeLayerGroup);
-    //         this.myMap.addLayer(this.markersCluster);
-    //         if (this.markersCluster !== undefined) {
-    //           const bounds = this.markersCluster.getBounds();
-    //           if (!this.utilsService.isEmptyObject(bounds)) {
-    //             this.myMap.fitBounds(bounds);
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    // );
+      }
+    );
   }
   ngOnDestroy(): void {
     this.departmentSubscription.unsubscribe();
@@ -167,14 +118,14 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
 
   initMarkerCluster() {
     let that = this;
-    this.markersCluster = L.markerClusterGroup({
+    this.markersCluster = (L as any).markerClusterGroup({
       iconCreateFunction(cluster: any) {
         let casesCount = cluster.getChildCount();
-        let data:any;
+        let data: any;
         return L.divIcon({
           html: L.Util.template(that.getSvg(that.color, casesCount), data),
           className: 'cluster',
-          iconSize: casesCount > 9999999 ? 90 : casesCount > 9999 ? 70 : 50,
+          iconSize: (70 as any),
         });
       },
     });
@@ -214,7 +165,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.urgenceDepartmentsService.getUrgenceDepartments();
+    this.urgence.getUrgences();
   }
 
   updateMapCluster(frigos: any) {
@@ -311,6 +262,9 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
         icon = this.iconPolice;
         break;
       case 'fire_station':
+        icon = this.iconFire;
+        break;
+      default:
         icon = this.iconFire;
         break;
     }
