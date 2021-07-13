@@ -28,6 +28,7 @@ const routes: Routes = [
   { path: 'departments', loadChildren: () => import('./pages/content/departments/departments.module').then(m => m.DepartmentsModule) },
   { path: 'users', loadChildren: () => import('./pages/content/users/users.module').then(m => m.UsersModule) },
   { path: 'emergency-request', loadChildren: () => import('./pages/content/emergency-request/emergency-request.module').then(m => m.EmergencyRequestModule) },
+  { path: 'emergency-request-history', loadChildren: () => import('./pages/content/emergency-request-history/emergency-request-history.module').then(m => m.EmergencyRequestHistoryModule) },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

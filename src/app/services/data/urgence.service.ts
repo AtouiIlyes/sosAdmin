@@ -42,6 +42,28 @@ export class UrgenceService {
       }
     );
   }
+  getUrgencesHistory() {
+    let body = new URLSearchParams();
+    let options = {
+      headers: new HttpHeaders().set(
+        'Content-Type',
+        'application/x-www-form-urlencoded;charset=UTF-8'
+      ),
+    };
+    const dataBody = '{"type":3}';
+    body.set('data', dataBody);
+    this.http.post('/api/urgence', body.toString(), options).subscribe(
+      (res) => {
+        urgence = JSON.parse(JSON.stringify(res));
+        this.eventChange();
+      },
+      (err) => {
+        if (err.status === 403) {
+          this.auth.logout();
+        }
+      }
+    );
+  }
 
   sendHelp(id: any) {
     let body = new URLSearchParams();

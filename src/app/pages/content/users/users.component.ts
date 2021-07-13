@@ -25,10 +25,11 @@ export class UsersComponent implements OnInit {
     this.userService.getUsers();
   }
 
-  onCellButtonClick(id: any) {
+  onCellButtonClick(data: any) {
     const dialogRef = this.dialog.open(HealthCardComponent, {
       width: window.innerWidth < 720 ? '100%' : window.innerWidth / 1.5 + 'px',
       height: window.innerWidth < 720 ? '100%' : 'auto',
+      data: data,
       maxWidth: 'none',
     });
   }

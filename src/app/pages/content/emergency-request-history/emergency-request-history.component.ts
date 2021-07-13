@@ -3,13 +3,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { UrgenceService } from 'src/app/services/data/urgence.service';
 import { HealthCardComponent } from '../health-card/health-card.component';
 import { MapComponent } from '../map/map.component';
-
 @Component({
-  selector: 'app-emergency-request',
-  templateUrl: './emergency-request.component.html',
-  styleUrls: ['./emergency-request.component.scss'],
+  selector: 'app-emergency-request-history',
+  templateUrl: './emergency-request-history.component.html',
+  styleUrls: ['./emergency-request-history.component.scss']
 })
-export class EmergencyRequestComponent implements OnInit {
+export class EmergencyRequestHistoryComponent implements OnInit {
+
   helpRequest = [];
   constructor(public dialog: MatDialog, private urgence: UrgenceService) {
     this.urgence.observableUrgence.subscribe((items:any) => {
@@ -20,7 +20,7 @@ export class EmergencyRequestComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.urgence.getUrgences();
+    this.urgence.getUrgencesHistory();
   }
 
   showUserInfo(data: any) {
@@ -39,11 +39,6 @@ export class EmergencyRequestComponent implements OnInit {
       data: data,
       maxWidth: 'none',
     });
-  }
-
-  sendHelp(id:any){
-    this.urgence.sendHelp(id);
-
   }
 
   getBackgroundColor(event: any) {

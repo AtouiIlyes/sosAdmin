@@ -57,13 +57,7 @@
           [visible]="true"
           [formItem]="{ visible: false }"
         ></dxi-column>
-        <dxi-column
-          dataField=""
-          caption="Envoyer l'aide"
-          cellTemplate="help"
-          [visible]="true"
-          [formItem]="{ visible: false }"
-        ></dxi-column>
+
         <div *dxTemplate="let button of 'user'" class="cell-button">
           <a style="cursor: pointer" (click)="showUserInfo(button.data)"
             ><img
@@ -76,11 +70,7 @@
             <mat-icon class="bg-icon-menu">pin_drop</mat-icon>
           </a>
         </div>
-        <div *dxTemplate="let button of 'help'" class="cell-button">
-          <a style="cursor: pointer" (click)="sendHelp(button.data.id)">
-            <mat-icon class="bg-icon-menu">done</mat-icon>
-          </a>
-        </div>
+
       </dx-data-grid>
     </mat-card-content>
   </mat-card>

@@ -3,7 +3,7 @@
     <mat-tab label="Information personnelles">
       <mat-card>
         <div id="form-container">
-          <dx-form id="form" [formData]="data" [colCount]="2">
+          <dx-form id="form" [formData]="user" [colCount]="2">
             <dxi-item
               itemType="group"
               icon="card"
@@ -69,7 +69,7 @@
     <mat-tab label="Information sanitaires">
       <mat-card>
         <div id="form-container">
-          <dx-form id="form" [formData]="data" [colCount]="2">
+          <dx-form id="form" [formData]="health" [colCount]="2">
             <dxi-item itemType="group" caption="Allergie sévère">
               <dxi-item
                 dataField="Identifiant"
@@ -78,7 +78,7 @@
                 <div *dxTemplate>
                   <dx-radio-group
                     [items]="items"
-                    [value]="items[0]"
+                    [(value)]="health.anaphylaxis === 1 ? items[0] : items[1]"
                     layout="horizontal"
                   >
                   </dx-radio-group>
@@ -91,7 +91,7 @@
                 <div *dxTemplate>
                   <dx-radio-group
                     [items]="items"
-                    [value]="items[0]"
+                    [(value)]="health.epipen === 1 ? items[0] : items[1]"
                     layout="horizontal"
                   >
                   </dx-radio-group>
@@ -101,25 +101,31 @@
             <dxi-item itemType="group" caption="Général">
               <dxi-item dataField="type" [label]="{ text: 'Groupe sanguain' }">
                 <div *dxTemplate>
-                  <dx-select-box [dataSource]="bloodType"></dx-select-box>
+                  <dx-select-box
+                    [dataSource]="bloodType"
+                    [(value)]="health.blood_group"
+                  ></dx-select-box>
                 </div>
               </dxi-item>
               <dxi-item dataField="Identifiant" [label]="{ text: 'Diabéte' }">
                 <div *dxTemplate>
                   <dx-radio-group
                     [items]="items"
-                    [value]="items[0]"
+                    [(value)]="health.epipen === 1 ? items[0] : items[1]"
                     layout="horizontal"
                   >
                   </dx-radio-group>
                 </div>
               </dxi-item>
 
-              <dxi-item dataField="Identifiant" [label]="{ text: 'Donneur d\'organne ' }">
+              <dxi-item
+                dataField="Identifiant"
+                [label]="{ text: 'Donneur d\'organne ' }"
+              >
                 <div *dxTemplate>
                   <dx-radio-group
                     [items]="items"
-                    [value]="items[0]"
+                    [(value)]="health.organ_donor === 1 ? items[0] : items[1]"
                     layout="horizontal"
                   >
                   </dx-radio-group>
@@ -132,18 +138,19 @@
                 <div *dxTemplate>
                   <dx-radio-group
                     [items]="items"
-                    [value]="items[0]"
+                    [(value)]="health.family_doctor === 1 ? items[0] : items[1]"
                     layout="horizontal"
                   >
                   </dx-radio-group>
                 </div>
               </dxi-item>
               <dxi-item
-                dataField="Address"
+                dataField="doctor"
                 [label]="{ text: 'Si oui ' }"
-              ></dxi-item>
+              >
+              <dx-text-box [(value)]="health.doctor"></dx-text-box>
             </dxi-item>
-
+            </dxi-item>
           </dx-form>
         </div>
       </mat-card>

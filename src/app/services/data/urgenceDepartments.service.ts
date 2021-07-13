@@ -51,7 +51,7 @@ export class UrgenceDepartmentsService {
       department.lat +
       ',"lon":' +
       department.lon +
-      ',"role":' +
+      ',"role":"' +
       department.role +
       '"}';
     let body = new URLSearchParams();
@@ -106,6 +106,7 @@ export class UrgenceDepartmentsService {
         }
       );
   }
+
   deleteDepartment(id: number) {
     const data = '{"type":3, "id":' + id + '}';
     let body = new URLSearchParams();

@@ -40,6 +40,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'help_request_history',
+        loadChildren: () =>
+          import('../emergency-request-history/emergency-request-history.module').then(
+            (m) => m.EmergencyRequestHistoryModule
+          ),
+      },
+      {
         path: 'map',
         loadChildren: () =>
           import('../map/map.module').then((m) => m.MapModule),
